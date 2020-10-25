@@ -86,6 +86,15 @@ def scrape():
 
     print(f'Current Mars Data Dict is: {mars_data}\n\n')  
     
+
+    ### Mars Hemispheres
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    links = soup.find_all('div', class_='item')
+    print(len(links))
+
     
     browser.quit()
 
