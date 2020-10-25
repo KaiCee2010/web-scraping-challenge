@@ -76,9 +76,15 @@ def scrape():
 
     for info in table_info.find_all('tr'):
         data = info.find('td', class_="column-1").text
-        name = data.replace(':', '').rstrip()
-        print(f'Name is: {name}')
+        name = data.replace(':', '').rstrip()       
     
+        val = info.find('td', class_="column-2").text
+
+        print(f'Name and Value: {name}  {val}')
+        
+        mars_data[name] = val
+
+    print(f'Current Mars Data Dict is: {mars_data}\n\n')  
     
     
     browser.quit()
