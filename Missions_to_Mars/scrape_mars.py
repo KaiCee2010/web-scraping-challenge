@@ -100,13 +100,22 @@ def scrape():
 
     for link in links:
         img_page = link.find('a', class_='itemLink product-item')['href']
-        print(img_page)
+        print(f'Partial image url: {img_page}')
         page_url = b_url + img_page
         page_list.append(page_url)
 
     print(f'List of pages: {page_list}')
 
+    hemisphere_image_urls = []
+    count = 0
 
+    for url in page_list:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        data = soup.find_all('div', class_='downloads')
+        hemi_img_url = data[0].find('a')['href']
+        
+        print(f'Complete image url: {hemi_img_url}')
 
     
     browser.quit()
