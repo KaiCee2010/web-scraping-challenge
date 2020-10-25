@@ -1,5 +1,6 @@
 from splinter import Browser
 from bs4 import BeautifulSoup
+import requests
 import time
 
 def init_browser():
@@ -73,8 +74,13 @@ def scrape():
     soup = BeautifulSoup(response.text, 'html.parser')
     table_info = soup.find('table', class_='tablepress tablepress-id-p-mars')
 
-
-
+    for info in table_info.find_all('tr'):
+        data = info.find('td', class_="column-1").text
+        name = data.replace(':', '').rstrip()
+        print(f'Name is: {name}')
+    
+    
+    
     browser.quit()
 
 
