@@ -95,6 +95,19 @@ def scrape():
     links = soup.find_all('div', class_='item')
     print(len(links))
 
+    b_url = 'https://astrogeology.usgs.gov'
+    page_list = []
+
+    for link in links:
+        img_page = link.find('a', class_='itemLink product-item')['href']
+        print(img_page)
+        page_url = b_url + img_page
+        page_list.append(page_url)
+
+    print(f'List of pages: {page_list}')
+
+
+
     
     browser.quit()
 
