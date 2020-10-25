@@ -87,55 +87,55 @@ def scrape():
     print(f'Current Mars Data Dict is: {mars_data}\n\n')  
     
 
-    # ### Mars Hemispheres
-    # print('Finding Mars hemispheres.....\n')
+    ### Mars Hemispheres
+    print('Finding Mars hemispheres.....\n')
 
-    # url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    # response = requests.get(url)
-    # soup = BeautifulSoup(response.text, 'html.parser')
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
 
-    # time.sleep(num)
+    time.sleep(num)
 
-    # links = soup.find_all('div', class_='item')
-    # print(len(links))
+    links = soup.find_all('div', class_='item')
+    print(len(links))
 
-    # b_url = 'https://astrogeology.usgs.gov'
-    # page_list = []
+    b_url = 'https://astrogeology.usgs.gov'
+    page_list = []
 
-    # for link in links:
-    #     img_page = link.find('a', class_='itemLink product-item')['href']
-    #     print(f'Partial image url: {img_page}')
-    #     page_url = b_url + img_page
-    #     page_list.append(page_url)
+    for link in links:
+        img_page = link.find('a', class_='itemLink product-item')['href']
+        print(f'Partial image url: {img_page}')
+        page_url = b_url + img_page
+        page_list.append(page_url)
 
-    # print(f'List of pages: {page_list}')
+    print(f'List of pages: {page_list}')
 
-    # hemisphere_image_urls = []
+    hemisphere_image_urls = []
     
-    # for url in page_list:
-    #     response = requests.get(url)
-    #     soup = BeautifulSoup(response.text, 'html.parser')
-    #     data = soup.find_all('div', class_='downloads')
-    #     hemi_img_url = data[0].find('a')['href']
+    for url in page_list:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        data = soup.find_all('div', class_='downloads')
+        hemi_img_url = data[0].find('a')['href']
         
-    #     print(f'Complete image url: {hemi_img_url}')
+        print(f'Complete image url: {hemi_img_url}')
 
-    #     data = soup.find_all('section', class_='block metadata')
-    #     title = data[0].find('h2', class_='title').text
-    #     hemi_title = title.replace('Enhanced', '').rstrip()
+        data = soup.find_all('section', class_='block metadata')
+        title = data[0].find('h2', class_='title').text
+        hemi_title = title.replace('Enhanced', '').rstrip()
         
-    #     print(hemi_title)
+        print(hemi_title)
         
-    #     hemisphere_image_urls.append({'title': hemi_title, 'img_url': hemi_img_url})
+        hemisphere_image_urls.append({'title': hemi_title, 'img_url': hemi_img_url})
 
-    # print(f'List of hemisphere urls: {hemisphere_image_urls}')
+    print(f'List of hemisphere urls: {hemisphere_image_urls}')
     
-    # mars_data['hemisphere_image_urls'] = hemisphere_image_urls
-    # print(f'Current Mars Data Dict is: {mars_data}\n\n') 
+    mars_data['hemisphere_image_urls'] = hemisphere_image_urls
+    print(f'Current Mars Data Dict is: {mars_data}\n\n') 
     
     browser.quit()
 
-
 scrape()
+# return mars_data
 
 
