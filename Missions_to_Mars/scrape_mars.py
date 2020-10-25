@@ -51,7 +51,7 @@ def scrape():
     image = soup.find_all('article', class_='carousel_item')
 
     # print(len(image))
-    
+
     s_url = 'https://www.jpl.nasa.gov'
     e_url = image[0].find('a', class_='button fancybox')['data-fancybox-href']
     print(f'Partial image url: {e_url}')
@@ -62,6 +62,20 @@ def scrape():
     mars_data['featured_image_url'] = featured_image_url
 
     print(f'Current Mars Data Dict is: {mars_data}\n\n')
+
+
+    # Mars Facts
+    print('Finding featured NASA JPL Mars space image.....\n')
+
+    url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
+    browser.visit(url)
+
+    time.sleep(num)
+
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    image = soup.find_all('article', class_='carousel_item')
+
 
 
     browser.quit()
