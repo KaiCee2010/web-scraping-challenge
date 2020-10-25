@@ -65,16 +65,13 @@ def scrape():
 
 
     # Mars Facts
-    print('Finding featured NASA JPL Mars space image.....\n')
+    print('Finding Mars facts.....\n')
 
-    url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
-    browser.visit(url)
+    url = 'https://space-facts.com/mars/'
+    response = requests.get(url)
 
-    time.sleep(num)
-
-    html = browser.html
-    soup = BeautifulSoup(html, 'html.parser')
-    image = soup.find_all('article', class_='carousel_item')
+    soup = BeautifulSoup(response.text, 'html.parser')
+    table_info = soup.find('table', class_='tablepress tablepress-id-p-mars')
 
 
 
