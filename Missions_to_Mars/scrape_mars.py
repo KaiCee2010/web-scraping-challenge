@@ -12,7 +12,7 @@ def init_browser():
 def scrape():
     browser = init_browser()
     mars_data = {}
-    num = 5
+    num = 3
 
     
     # NASA Latest Mars News
@@ -107,8 +107,7 @@ def scrape():
     print(f'List of pages: {page_list}')
 
     hemisphere_image_urls = []
-    count = 0
-
+    
     for url in page_list:
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -116,6 +115,17 @@ def scrape():
         hemi_img_url = data[0].find('a')['href']
         
         print(f'Complete image url: {hemi_img_url}')
+
+        data = soup.find_all('section', class_='block metadata')
+        title = data[0].find('h2', class_='title').text
+        hemi_title = title.replace('Enhanced', '').rstrip()
+        
+        print(hemi_title)
+        
+        hemisphere_image_urls.append({'title': hemi_title, 'img_url': hemi_img_url})
+
+    print(hemisphere_image_urls)
+
 
     
     browser.quit()
