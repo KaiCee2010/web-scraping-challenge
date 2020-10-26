@@ -135,7 +135,6 @@ def scrape():
     
     browser.quit()
 
-# scrape()
-return mars_data
+    return mars_data
 
 
