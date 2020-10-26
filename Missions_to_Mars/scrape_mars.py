@@ -34,8 +34,8 @@ def scrape():
     news_p = articles[0].find('div', class_='article_teaser_body').text
     print(f'Latest Teaser: {news_p}\n')
 
-    mars_data['latest_news'] = news_title
-    mars_data['latest_teaser'] = news_p
+    mars_data['news_title'] = news_title
+    mars_data['news_p'] = news_p
 
     print(f'Current Mars Data Dict is: {mars_data}\n\n')
 
@@ -68,6 +68,9 @@ def scrape():
     # Mars Facts
     print('Finding Mars facts.....\n')
 
+    mars_tbl_info = []
+
+
     url = 'https://space-facts.com/mars/'
     response = requests.get(url)
 
@@ -80,10 +83,12 @@ def scrape():
     
         val = info.find('td', class_="column-2").text
 
-        print(f'Name and Value: {name}  {val}')
-        
-        mars_data[name] = val
-
+        mars_tbl_info.append({'name': name, 'value': val})
+    
+    print(mars_tbl_info)
+  
+    mars_data['mars_tbl_info'] = mars_tbl_info
+   
     print(f'Current Mars Data Dict is: {mars_data}\n\n')  
     
 
