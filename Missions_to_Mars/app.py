@@ -15,8 +15,11 @@ mars.drop()
 
 @app.route('/')
 def home():
-    results = mars.find()
+    results = list(mars.find())
     return render_template('index.html', mars_results = results)
+    # results = 'This is results'
+    # return render_template('index.html', mars_results = results)
+
 
 
 @app.route('/scrape')
