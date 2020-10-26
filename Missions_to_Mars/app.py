@@ -25,7 +25,7 @@ def home():
 @app.route('/scrape')
 def scrape():
     mars_data = scrape_mars.scrape()
-    mars.insert(mars_data)
+    mars.insert_one(mars_data)
 
     return redirect('/')
 
